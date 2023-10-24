@@ -9,10 +9,10 @@ from pydantic_settings import BaseSettings
 load_dotenv()
 
 class Settings(BaseSettings):
-    DB_USER: str = os.environ.get("DB_USER")
-    DB_PASSWORD : str = os.environ.get("DB_PASSWORD")
-    DB_NAME: str = os.environ.get("DB_NAME")
-    DB_HOST: str = os.environ.get("DB_HOST")
+    DB_USER: str = os.environ.get("MYSQL_USER")
+    DB_PASSWORD : str = os.environ.get("MYSQL_ROOT_PASSWORD")
+    DB_NAME: str = os.environ.get("MYSQL_DATABASE")
+    DB_HOST: str = os.environ.get("MYSQL_HOST")
     DATABASE_URL: str = f"mysql+mysqlconnector://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}"
 
     SECRET_KEY: str = os.environ.get("SECRET_KEY")
