@@ -22,4 +22,16 @@ services:
       PMA_ARBITRARY: 1
       PMA_HOST: mysql_db  
       PMA_USER: ${MYSQL_USER}  
-      PMA_PASSWORD: ${MYSQL_PASSWORD}  
+      PMA_PASSWORD: ${MYSQL_ROOT_PASSWORD}  
+
+  api:
+    container_name: api
+    build: .
+    command: bash -c "uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload"
+    volumes: 
+      - .:/app
+    ports:
+    - 8000:8000
+    depends_on:
+      - mysql_db
+    restart: always
